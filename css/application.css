@@ -1,0 +1,21 @@
+body {
+  background: url(../images/fundo.jpg)center;
+}
+
+.fundocurri {
+  background: rgba(138, 138, 138, 0.56);
+  border-radius: 25px;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+  padding: 10px;
+  width: 20%;
+  max-width: 450px;
+  min-width: 400px;
+}
+
+#imgbord {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
