@@ -1,15 +1,34 @@
-﻿
 <html>
 <title></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 </style>
+
 <body>
+  <script>
+  $(document).ready(function() {
+    $('#meuFormulario').on('submit', function(e) {
+      e.preventDefault();
+      var len1 = $('#usuario').val();
+      var len2 = $('#senha').val();
+      if (len1 == 'Rogerio' && len2 == '123') {
+        localStorage.setItem("usuario", $('#usuario').val());
+        localStorage.setItem("senha", $('#senha').val());
+
+        this.submit();
+      } else {
+        alert("Acesso NEGADO!!!")
+      }
+    });
+  });
+  </script>
 
 <!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
@@ -18,13 +37,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
   <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button"></a>
   <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button"></a>
 </nav>
+<h1 class="w3-center">Acesso de usuário</h1>
+   <form id="meuFormulario" action="pagina2.html">
+Usuario:<br>
+<input type="text" name="usuario" value="" id="usuario">
+<br>
+Senha:<br>
+<input type="password" name="senha" value="" id="senha">
+<br><br>
 
+
+<input type="submit" value="Enviar">
+</form>
 <!-- Top menu -->
 <div class="w3-top">
   <div class="w3-white w3-xlarge" style=":1200px">
     <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
     <div class="w3-right w3-padding-16"></div>
     <div class="w3-center w3-padding-16">Filmes</div>
+
   </div>
 </div>
 
@@ -70,5 +101,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
       <h3>Harry Potter e as Relíquias da Morte Parte 2</h3>
     </div>
   </div>
+  <script src="js/comportamento.js"></script>
 </body>
 </html>
