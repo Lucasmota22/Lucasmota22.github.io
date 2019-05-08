@@ -1,0 +1,228 @@
+
+<html>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+</style>
+
+<body>
+  <script>
+  $(document).ready(function() {
+    $('#meuFormulario').on('submit', function(e) {
+      e.preventDefault();
+      var len1 = $('#usuario').val();
+      var len2 = $('#senha').val();
+      if (len1 == 'Lucas' && len2 == '3923') {
+        localStorage.setItem("usuario", $('#usuario').val());
+        localStorage.setItem("senha", $('#senha').val());
+        this.submit();
+      } else {
+        alert("Acesso NEGADO!!!")
+      }
+    });
+  });
+  $(document).ready(function() {
+
+
+
+ $('#form1').on('submit', function(e) {
+
+   e.preventDefault();
+
+
+
+   var api_url = 'https://api.linkpreview.net'
+
+   var key = '5ccb9525ad6e74755159c3ffa27fa10e40287ac64f332' // real
+
+   $.ajax({
+
+     url: api_url + "?key=" + key + "&q=" + $("#endereco").val(),
+
+     contentType: "application/json",
+
+     dataType: 'json',
+
+     success: function(result) {
+
+       $("#p1").text(result.title);
+
+       $("#p2").text(result.description);
+
+       $('#p3').attr('src', result.image);
+
+       $("#p4").text(result.url);
+
+     }
+
+   });
+
+
+
+ });
+
+
+
+});
+
+  </script>
+
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()"
+  class="w3-bar-item w3-button"></a>
+  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button"></a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button"></a>
+</nav>
+
+
+
+<input type="submit" value="Enviar">
+</form>
+<!-- Top menu -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style=":1200px">
+    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+    <div class="w3-right w3-padding-16"></div>
+    <div class="w3-center w3-padding-16">Filmes</div>
+
+  </div>
+</div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="filmes">
+    <div class="w3-quarter">
+      <img src="images/harry potter1.jpg" alt="Sandwich" style="width:100%">
+      <h3>Harry Potter e a Pedra Filosofal</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter 2.jpg" alt="Steak" style="width:100%">
+      <h3>Harry Potter e a Câmara Secreta</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter 3.jpg" alt="Cherries" style="width:100%">
+      <h3>Harry Potter e o Prisioneiro de Askaban</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter 4.jpg" alt="Pasta and Wine" style="width:100%">
+      <h3>Harry Potter e o Cálice de Fogo</h3>
+    </div>
+  </div>
+
+  <!-- Second Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center">
+    <div class="w3-quarter">
+      <img src="images/harry potter 5.jpg" alt="Popsicle" style="width:100%">
+      <h3>Harry Potter e a Ordem da Fênix</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter6.jpg" alt="Salmon" style="width:100%">
+      <h3>Harry Potter e o Enigma do Principe</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter 7.jpg" alt="Sandwich" style="width:100%">
+      <h3>Harry Potter e as Relíquias da Morte Parte1</h3>
+    </div>
+    <div class="w3-quarter">
+      <img src="images/harry potter 8.jpg" alt="Croissant" style="width:100%">
+      <h3>Harry Potter e as Relíquias da Morte Parte 2</h3>
+    </div>
+  </div>
+  <!-- Button to Open the Modal -->
+  <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Confirmar
+  </button></center>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Login</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <body>
+                                    <form name="form1" id="form1">
+
+                                      URL:
+
+                                      <input type="text" id="endereco" name="endereco">
+
+                                      <br>
+
+                                      <input type="submit" value="ENVIAR">
+
+                                    </form>
+
+                                    <br><br>
+
+
+
+
+
+                                    <p id="p1"></p>
+
+                                    <p id="p2"></p>
+
+                                    <img id="p3" src="" />
+
+                                    <p id="p4"></p>
+                                  </body>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="w3-col m6 w3-padding-large">
+            <h1 class="w3-center">Acesso de usuário</h1><br>
+
+
+            <p class="w3-large">
+              <form id="meuFormulario" action="pagina2.html">
+          </div>
+          Usuario:<br>
+          <input type="text" name="usuario" value="" id="usuario">
+          <br>
+          Senha:<br>
+          <input type="password" name="senha" value="" id="senha">
+          <br><br>
+
+
+          <input type="submit" value="Enviar">
+
+          </form>
+
+
+
+        </div>
+      </div>
+
+      <hr>
+
+
+
+      </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+
+        </div>
+  <script src="js/comportamento.js"></script>
+</body>
+</html>
