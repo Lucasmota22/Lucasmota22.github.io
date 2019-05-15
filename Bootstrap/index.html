@@ -1,16 +1,15 @@
-
+<!DOCTYPE html>
 <html>
 <title></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
 
 
 <style>
@@ -35,48 +34,60 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     });
   });
   $(document).ready(function() {
-
-
-
  $('#form1').on('submit', function(e) {
-
    e.preventDefault();
-
-
-
    var api_url = 'https://api.linkpreview.net'
-
    var key = '5ccb9525ad6e74755159c3ffa27fa10e40287ac64f332' // real
-
    $.ajax({
-
      url: api_url + "?key=" + key + "&q=" + $("#endereco").val(),
-
      contentType: "application/json",
-
      dataType: 'json',
-
      success: function(result) {
-
        $("#p1").text(result.title);
-
        $("#p2").text(result.description);
-
        $('#p3').attr('src', result.image);
-
        $("#p4").text(result.url);
-
      }
-
    });
-
-
-
  });
-
-
-
 });
+$(document).ready(function() {
+     var minhaview = new ol.View({
+       center: ol.proj.fromLonLat([-46.736804, -23.5247576]),
+       zoom: 16
+     });
+     var map = new ol.Map({
+       target: 'map',
+       layers: [
+         new ol.layer.Tile({
+           source: new ol.source.OSM()
+         })
+       ],
+       view: minhaview
+     });
+     $("#bt1").click(function() {
+       minhaview.animate({
+         center: ol.proj.fromLonLat([-46.5976273, -23.5519444]),
+         duration: 6000
+       });
+     });
+     $("#bt2").click(function() {
+       getLocation();
+     });
+     function getLocation() {
+       if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(showPosition);
+       } else {
+         alert("Geolocation is not supported by this browser.");
+       }
+     }
+     function showPosition(position) {
+       minhaview.animate({
+         center: ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]),
+         duration: 6000
+       });
+     }
+   });
 
   </script>
 
@@ -223,6 +234,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
         <div class="modal-footer">
 
         </div>
+        <style> .map {
+    height: 400px;
+    width: 100%;
+  } </style>
+  <div id="map" class="map"></div>
+
+ <br><br>
+
+ <button type="button" id="bt1">Lozalizar USJT Mooca</button>
+
+
+
+ <br><br>
+
+
+
+ <button type="button" id="bt2">Pegue Minhas coordenadas</button>
+
   <script src="js/comportamento.js"></script>
 </body>
 </html>
